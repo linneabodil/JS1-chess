@@ -10,33 +10,43 @@
 </body>
 <script>
 
+  // chessboard
   var xLine = ["A", "B", "C", "D", "E", "F", "G", "H"];
   var yLine = ["1", "2", "3", "4", "5", "6", "7", "8"];
 
-  var moves = [
-    { x: +1, y: -2 },
-    { x: +1, y: +2 },
-    { x: +2, y: -1 },
-    { x: +2, y: +1 },
-    { x: -2, y: -1 },
-    { x: -2, y: +1 },
-    { x: -1, y: -2 },
-    { x: -1, y: +2 }
-  ]
+  // the pretty knight, [0]:position for x-line [2]:position for y-line
+  var knight = [5, 6];
 
-  // startposition for knight
-  var x = 3;
-  var y = 5;
+  moveKnight(knight);
 
-  x++;
+  function moveKnight(knight, x, y) {
 
-  var knight = [
-    xLine[x],
-    yLine[y]
-  ];
+    // possible moves
+    var moves = [
+      { x: +1, y: -2 },
+      { x: +1, y: +2 },
+      { x: +2, y: -1 },
+      { x: +2, y: +1 },
+      { x: -2, y: -1 },
+      { x: -2, y: +1 },
+      { x: -1, y: -2 },
+      { x: -1, y: +2 }
+    ];
 
-  console.log(knight)
+    // new array for storing possible new positions
+    var newPositions = [];
 
+    // take the current position and creates the new ones
+    for (var i = 0; i < moves.length; i++) {
+      var move = moves[i];
+      var position = {}; // object to push into the newPositions-array
+      position.x = knight[0] + move.x;
+      position.y = knight[1] + move.y;
+      newPositions.push(position)
+    }
+    console.log(newPositions)
+
+  }; // end of function
 
 
 </script>
