@@ -10,6 +10,34 @@
 </body>
 <script>
 
+  var xLine = ["A", "B", "C", "D", "E", "F", "G", "H"];
+  var yLine = ["1", "2", "3", "4", "5", "6", "7", "8"];
+
+  var moves = [
+    { x: +1, y: -2 },
+    { x: +1, y: +2 },
+    { x: +2, y: -1 },
+    { x: +2, y: +1 },
+    { x: -2, y: -1 },
+    { x: -2, y: +1 },
+    { x: -1, y: -2 },
+    { x: -1, y: +2 }
+  ]
+
+  // startposition for knight
+  var x = 3;
+  var y = 5;
+
+  x++;
+
+  var knight = [
+    xLine[x],
+    yLine[y]
+  ];
+
+  console.log(knight)
+
+
 
 </script>
 <html>
