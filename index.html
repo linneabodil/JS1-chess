@@ -10,16 +10,29 @@
 </body>
 <script>
 
-  // chessboard
-  var xLine = ["A", "B", "C", "D", "E", "F", "G", "H"];
-  var yLine = ["1", "2", "3", "4", "5", "6", "7", "8"];
+  // the first/current position of the knight
+  var firstPosition = "F3";
 
-  // the pretty knight, [0]:position for x-line [2]:position for y-line
-  var knight = [1, 7];
+  // calling the function
+  moveKnight(firstPosition);
 
-  moveKnight(knight);
+  function moveKnight(firstPosition) {
+    // chessboard
+    var xLine = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    var yLine = ["1", "2", "3", "4", "5", "6", "7", "8"];
 
-  function moveKnight(knight, x, y) {
+    var x = firstPosition.split("");
+    var first = xLine.indexOf(x[0])
+    var second = yLine.indexOf(x[1])
+
+    var knight = [];
+
+    knight.push(first, second);
+
+    if (knight.length > 2) {
+      alert("Too many arguments.")
+      return;
+    }
 
     // possible moves
     var moves = [
@@ -44,8 +57,6 @@
       position.y = knight[1] + move.y;
       newPositions.push(position)
     }
-    console.log(newPositions)
-
 
     // check if new position is on the board/is valid
     var okPositions = [];
@@ -53,17 +64,23 @@
     for (var i = 0; i < newPositions.length; i++) {
       var check = newPositions[i];
       if (check.x < 0 || check.y < 0) {
-        console.log("too small")
       }
       else if (check.x > 7 || check.y > 7) {
-        console.log("too big")
       }
       else {
         okPositions.push(check)
       }
     }
-    console.log(okPositions);
 
+    // give the user the new possible positions
+    var result = "Possible new positions are: ";
+
+    for (var i = 0; i < okPositions.length; i++) {
+      result += xLine[okPositions[i].x];
+      result += yLine[okPositions[i].y] + " ";
+    }
+    console.log(result)
+    return result;
   }; // end of function
 
 
