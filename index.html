@@ -49,11 +49,13 @@
       clearActive[i].setAttribute("class", "");
     }
 
-    var clearPossible = [];
-    clearPossible = document.getElementsByClassName("possible");
-    for (var i = 0; i < clearPossible.length; i++) {
+    var clearPossible = document.getElementsByClassName("possible");
+    console.log(clearPossible[0])
+    for (var i = 0; i < clearPossible.length; i + 2) {
       clearPossible[i].setAttribute("class", "");
     }
+
+    console.log(clearPossible)
 
     moveKnight(firstPosition, xLine, yLine);
   });
@@ -132,7 +134,6 @@
 
     var answer = document.getElementById("answer");
     answer.innerHTML = result;
-
     return result;
   }; // end of function
 
