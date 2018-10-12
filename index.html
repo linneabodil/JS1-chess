@@ -2,6 +2,18 @@
 <head>
   <meta charset="utf-8">
   <title>Chess LJ.</title>
+  <style>
+    * {
+      list-style: none;
+    }
+
+    li {
+      width: 40px;
+      height: 40px;
+      margin: 2px;
+    }
+
+  </style>
 </head>
 <body>
 
@@ -9,6 +21,36 @@
 
 </body>
 <script>
+
+  // create the chessboard
+  function drawBoard() {
+    var chessBoard = document.getElementById("board");
+    console.log(chessBoard)
+
+    for (var i = 0; i < 8; i++) {
+    var chessRow = document.createElement("ul");
+    chessRow.style.clear = "left";
+    console.log(chessRow);
+
+      for (var j = 0; j < 8; j++) {
+        var chessCell = document.createElement("li");
+        chessCell.style.float = "left";
+        if (j%2 == 0) {
+          chessCell.style.backgroundColor = "DimGrey";
+        }
+        else {
+          chessCell.style.backgroundColor = "LightGrey";
+        }
+
+        console.log(chessCell)
+        chessRow.appendChild(chessCell)
+      }
+    chessBoard.appendChild(chessRow)
+    }
+  }
+
+
+  drawBoard();
 
   // the first/current position of the knight
   var firstPosition = "F3";
