@@ -2,9 +2,24 @@
 <head>
   <meta charset="utf-8">
   <title>Chess LJ.</title>
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
   <style>
     * {
       list-style: none;
+      margin: 0;
+    }
+    h2 {
+      float: left;
+      font-family: Oswald;
+      text-align: center;
+    }
+    #number {
+      width: 30px;
+      padding-top: 10px;
+    }
+    #letter {
+      width: 45px;
+      margin: 2px;
     }
     li {
       width: 45px;
@@ -37,42 +52,71 @@
     var xLine = x;
     var yLine = y;
 
-    console.log(xLine)
-
-    for (var i = 0; i < 8; i++) {
+    // printing the board, the rows
+    // one extra line for putting letters on the board side
+    for (var i = 0; i < 9; i++) {
     var chessRow = document.createElement("ul");
     chessRow.style.clear = "left";
 
+    // prints the numbers on the board sides
+    var numbers = document.createElement("h2");
+    if (yLine[i] != undefined) {
+      numbers.innerHTML = yLine[i];
+    }
+    numbers.setAttribute("id", "number");
+    chessRow.appendChild(numbers);
+
+      // printing the board, the cells
       for (var j = 0; j < 8; j++) {
-        var chessCell = document.createElement("li");
-        chessCell.style.float = "left";
-        chessCell.setAttribute("id", xLine[j] + yLine[i])
-        if (i%2 ==0) {
-          if (j%2 == 0) {
-            chessCell.style.backgroundColor = "Sienna";
+        if (xLine[i] != undefined) {
+          var chessCell = document.createElement("li");
+          chessCell.style.float = "left";
+          chessCell.setAttribute("id", xLine[j] + yLine[i])
+          if (i%2 ==0) {
+            if (j%2 == 0) {
+              chessCell.style.backgroundColor = "Sienna";
+            }
+            else {
+              chessCell.style.backgroundColor = "Tan";
+            }
           }
           else {
-            chessCell.style.backgroundColor = "Tan";
+            if (j%2 == 0) {
+              chessCell.style.backgroundColor = "Tan";
+            }
+            else {
+              chessCell.style.backgroundColor = "Sienna";
+            }
           }
+          chessRow.appendChild(chessCell)
         }
-        else {
-          if (j%2 == 0) {
-            chessCell.style.backgroundColor = "Tan";
-          }
-          else {
-            chessCell.style.backgroundColor = "Sienna";
-          }
-        }
-        chessRow.appendChild(chessCell)
       }
     chessBoard.appendChild(chessRow)
     }
+
+    // prints the letters on the board sides
+    var lettersRow = chessBoard.lastChild;
+    lettersRow.setAttribute("id", "letter-row");
+    console.log(lettersRow)
+
+
+
+    for (var i = 0; i < 8; i++) {
+    var letter = document.createElement("h2");
+    if (yLine[i] != undefined) {
+      letter.innerHTML = xLine[i];
+    }
+    letter.setAttribute("id", "letter");
+    letter.style.float = "left";
+    lettersRow.appendChild(letter);
+  }
+
   };
 
   drawBoard(xLine, yLine);
 
   // the first/current position of the knight
-  var firstPosition = "B3";
+  var firstPosition = "F3";
 
   // calling the function
   moveKnight(firstPosition, xLine, yLine);
