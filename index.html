@@ -8,8 +8,8 @@
     }
 
     li {
-      width: 40px;
-      height: 40px;
+      width: 45px;
+      height: 45px;
       margin: 2px;
     }
 
@@ -35,19 +35,27 @@
       for (var j = 0; j < 8; j++) {
         var chessCell = document.createElement("li");
         chessCell.style.float = "left";
-        if (j%2 == 0) {
-          chessCell.style.backgroundColor = "DimGrey";
+        if (i%2 ==0) {
+          if (j%2 == 0) {
+            chessCell.style.backgroundColor = "DimGrey";
+          }
+          else {
+            chessCell.style.backgroundColor = "LightGrey";
+          }
         }
         else {
-          chessCell.style.backgroundColor = "LightGrey";
+          if (j%2 == 0) {
+            chessCell.style.backgroundColor = "LightGrey";
+          }
+          else {
+            chessCell.style.backgroundColor = "DimGrey";
+          }
         }
-
-        console.log(chessCell)
         chessRow.appendChild(chessCell)
       }
     chessBoard.appendChild(chessRow)
     }
-  }
+  };
 
 
   drawBoard();
