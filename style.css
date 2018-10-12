@@ -14,18 +14,23 @@ div#board {
 }
 
 div#text-area {
+  height: 80px;
   position: absolute;
   left: 420px;
-  bottom: 20px;
+  bottom: 50px;
 }
 
-h1 {
+h1, h2, h3 {
   font-family: Oswald;
+}
+
+h3 {
+  font-size: 16px;
+  padding: 5px;
 }
 
 h2 {
   float: left;
-  font-family: Oswald;
   text-align: center;
 }
 

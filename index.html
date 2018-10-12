@@ -13,6 +13,7 @@
         <input type="text" id="position-field" placeholder="Where is he now?" name="position-field" />
         <input type="submit" id="button" value="Check!" />
       </form>
+      <h3 id="answer"></h3>
     </div>
   </div>
 </body>
@@ -23,14 +24,37 @@
   var yLine = ["1", "2", "3", "4", "5", "6", "7", "8"];
 
 
-
-
+  // calls the function
   var button = document.getElementById("button");
   button.addEventListener("click", function(e) {
     e.preventDefault();
-    var firstPosition = document.getElementById("position-field").value;
-    console.log(firstPosition)
+
     // the first/current position of the knight
+    var firstPosition = "";
+    firstPosition = document.getElementById("position-field").value;
+
+    //check if input is valid
+    if (firstPosition == "") {
+      alert("He has to be somewhere?");
+      return;
+    } else if (firstPosition.length > 2) {
+      alert("Two characters please.")
+      return;
+    }
+
+    // clear the board on multiple function-calls
+    var clearActive = [];
+    clearActive = document.getElementsByClassName("active");
+    for (var i = 0; i < clearActive.length; i++) {
+      clearActive[i].setAttribute("class", "");
+    }
+
+    var clearPossible = [];
+    clearPossible = document.getElementsByClassName("possible");
+    for (var i = 0; i < clearPossible.length; i++) {
+      clearPossible[i].setAttribute("class", "");
+    }
+
     moveKnight(firstPosition, xLine, yLine);
   });
 
@@ -98,13 +122,17 @@
     }
 
     // give the user the new possible positions
-    var result = "Possible new positions are: ";
+    var result = "The knight can go to: ";
 
     for (var i = 0; i < okPositions.length; i++) {
       result += xLine[okPositions[i].x];
       result += yLine[okPositions[i].y] + " ";
     }
     console.log(result)
+
+    var answer = document.getElementById("answer");
+    answer.innerHTML = result;
+
     return result;
   }; // end of function
 
@@ -174,7 +202,6 @@
     };
 
     drawBoard(xLine, yLine);
-
 
 </script>
 <html>
