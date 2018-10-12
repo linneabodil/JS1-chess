@@ -6,49 +6,61 @@
     * {
       list-style: none;
     }
-
     li {
       width: 45px;
       height: 45px;
       margin: 2px;
     }
-
+    .active {
+      background-image: url(knight.png);
+      background-size: cover;
+    }
+    .possible {
+      background-image: url(knight-wh.png);
+      background-size: cover;
+    }
   </style>
 </head>
 <body>
-
   <div id="board"></div>
-
 </body>
 <script>
 
-  // create the chessboard
-  function drawBoard() {
+  // chessboard
+  var xLine = ["A", "B", "C", "D", "E", "F", "G", "H"];
+  var yLine = ["1", "2", "3", "4", "5", "6", "7", "8"];
+
+  // function to create the chessboard
+  function drawBoard(x, y) {
+    // the board form the html-file
     var chessBoard = document.getElementById("board");
-    console.log(chessBoard)
+    var xLine = x;
+    var yLine = y;
+
+    console.log(xLine)
 
     for (var i = 0; i < 8; i++) {
     var chessRow = document.createElement("ul");
     chessRow.style.clear = "left";
-    console.log(chessRow);
 
       for (var j = 0; j < 8; j++) {
         var chessCell = document.createElement("li");
         chessCell.style.float = "left";
+        chessCell.setAttribute("id", xLine[j] + yLine[i])
         if (i%2 ==0) {
           if (j%2 == 0) {
-            chessCell.style.backgroundColor = "DimGrey";
+            chessCell.style.backgroundColor = "Sienna";
           }
           else {
-            chessCell.style.backgroundColor = "LightGrey";
+            chessCell.style.backgroundColor = "Tan";
           }
         }
         else {
           if (j%2 == 0) {
-            chessCell.style.backgroundColor = "LightGrey";
+            chessCell.style.backgroundColor = "Tan";
           }
           else {
-            chessCell.style.backgroundColor = "DimGrey";
+            chessCell.style.backgroundColor = "Sienna";
           }
         }
         chessRow.appendChild(chessCell)
@@ -57,19 +69,20 @@
     }
   };
 
-
-  drawBoard();
+  drawBoard(xLine, yLine);
 
   // the first/current position of the knight
-  var firstPosition = "F3";
+  var firstPosition = "B3";
 
   // calling the function
-  moveKnight(firstPosition);
+  moveKnight(firstPosition, xLine, yLine);
 
-  function moveKnight(firstPosition) {
-    // chessboard
-    var xLine = ["A", "B", "C", "D", "E", "F", "G", "H"];
-    var yLine = ["1", "2", "3", "4", "5", "6", "7", "8"];
+  function moveKnight(firstPosition, x, y) {
+    // putting the knight on the board
+    var knight = document.getElementById(firstPosition).setAttribute("class", "active");
+
+    var xLine = x;
+    var yLine = y;
 
     var x = firstPosition.split("");
     var first = xLine.indexOf(x[0])
@@ -120,6 +133,11 @@
       else {
         okPositions.push(check)
       }
+    }
+
+    for (var i = 0; i < okPositions.length; i++) {
+      var possPos = xLine[okPositions[i].x] + yLine[okPositions[i].y];
+      var knight = document.getElementById(possPos).setAttribute("class", "possible");
     }
 
     // give the user the new possible positions
