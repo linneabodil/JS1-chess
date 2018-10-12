@@ -2,42 +2,19 @@
 <head>
   <meta charset="utf-8">
   <title>Chess LJ.</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-  <style>
-    * {
-      list-style: none;
-      margin: 0;
-    }
-    h2 {
-      float: left;
-      font-family: Oswald;
-      text-align: center;
-    }
-    #number {
-      width: 30px;
-      padding-top: 10px;
-    }
-    #letter {
-      width: 45px;
-      margin: 2px;
-    }
-    li {
-      width: 45px;
-      height: 45px;
-      margin: 2px;
-    }
-    .active {
-      background-image: url(knight.png);
-      background-size: cover;
-    }
-    .possible {
-      background-image: url(knight-wh.png);
-      background-size: cover;
-    }
-  </style>
 </head>
 <body>
-  <div id="board"></div>
+  <div id="board">
+    <div id="text-area">
+      <h1>Where can the knight go?</h1>
+      <form>
+        <input type="text" id="position-field" placeholder="Where is he now?" />
+        <input type="submit" id="button" value="Check!" />
+      </form>
+    </div>
+  </div>
 </body>
 <script>
 
@@ -194,7 +171,6 @@
     console.log(result)
     return result;
   }; // end of function
-
 
 </script>
 <html>
