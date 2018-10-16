@@ -110,14 +110,12 @@
 
     for (var i = 0; i < newPositions.length; i++) {
       var check = newPositions[i];
-      if (check.x < 0 || check.y < 0) {
+      if (check.x >= 0 && check.x < 8) {
+        if (check.y >= 0 && check.y < 8) {
+          okPositions.push(check)
+        }
       }
-      else if (check.x > 7 || check.y > 7) {
-      }
-      else {
-        okPositions.push(check)
-      }
-    }
+    };
 
     for (var i = 0; i < okPositions.length; i++) {
       var possPos = xLine[okPositions[i].x] + yLine[okPositions[i].y];
