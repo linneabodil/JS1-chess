@@ -50,30 +50,31 @@
     }
 
     var clearPossible = document.getElementsByClassName("possible");
-    console.log(clearPossible[0])
     for (var i = 0; i < clearPossible.length; i + 2) {
       clearPossible[i].setAttribute("class", "");
     }
 
-    console.log(clearPossible)
 
     moveKnight(firstPosition, xLine, yLine);
   });
 
   function moveKnight(firstPosition, x, y) {
-    // putting the knight on the board
-    var placeKnight = document.getElementById(firstPosition).setAttribute("class", "active");
-
     var xLine = x;
     var yLine = y;
 
     var x = firstPosition.split("");
-    var first = xLine.indexOf(x[0])
+    letter = x[0].toUpperCase();
+    var first = xLine.indexOf(letter)
     var second = yLine.indexOf(x[1])
 
-    var knight = [];
+    firstPosition = letter + x[1];
 
+    // putting the knight on the board
+    var placeKnight = document.getElementById(firstPosition).setAttribute("class", "active");
+
+    var knight = [];
     knight.push(first, second);
+    console.log(knight)
 
     if (knight.length > 2) {
       alert("Too many arguments.")

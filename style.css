@@ -48,6 +48,7 @@ li {
   width: 45px;
   height: 45px;
   margin: 1px;
+  border-radius: 3px;
 }
 
 .active {
